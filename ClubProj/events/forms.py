@@ -26,7 +26,8 @@ class VenueForm(forms.ModelForm):
             'email_address': forms.EmailInput(attrs={'class':'form-control', 'placeholder': 'Email'}),
         }
 
-class EventForm(forms.ModelForm):
+#Admin Event Form
+class EventFormAdmin(forms.ModelForm):
     class Meta:
         model = Event
         fields = ("name", "event_date", "venue", "manager", "description", "attendees")
@@ -49,5 +50,26 @@ class EventForm(forms.ModelForm):
             'attendees': forms.SelectMultiple(attrs={'class':'form-control'}),
         }
 
+#User event form
+class EventForm(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = ("name", "event_date", "venue", "description", "attendees")
+
+        labels = {
+            'name': '',
+            'event_date': '',
+            'venue': '',
+            'description': '',
+            'attendees': '',
+        }
+        widgets = {
+            'name': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Event Name'}),
+            #'event_date': DateTimePicker(attrs={'class':'form-control'}),
+            'event_date':  forms.TextInput(attrs={'class':'form-control', 'placeholder': 'YYYY-MM-DD HH:MM:SS'}),
+            'venue': forms.Select(attrs={'class':'form-control'}),            
+            'description': forms.Textarea(attrs={'class':'form-control', 'placeholder': 'Any description'}),
+            'attendees': forms.SelectMultiple(attrs={'class':'form-control'}),
+        }
 
 

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.template.defaultfilters import default
 
 # Create your models here.
 class Venue(models.Model):
@@ -8,6 +9,7 @@ class Venue(models.Model):
     pin_code = models.CharField('Pin code', max_length=6)
     phone_no =  models.CharField('Contact no ', max_length=10, blank=True)
     email_address = models.EmailField('Email address',  blank=True)
+    owner = models.IntegerField("Venue owner", blank=False, default=1)
 
     def __str__(self):
         return self.name

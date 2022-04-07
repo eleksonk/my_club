@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Event, Venue
-from .forms import VenueForm, EventForm
+from .forms import VenueForm, EventForm, EventFormAdmin
 
 from django.http import HttpResponse
 import csv
@@ -14,6 +14,10 @@ from reportlab.lib.pagesizes import A4
 
 #for pagination
 from django.core.paginator import Paginator
+
+
+from django.contrib import messages
+from django.contrib.auth.models import User
 
 
 
@@ -31,7 +35,10 @@ def add_venue(request):
     if request.method == "POST":
         form = VenueForm(request.POST)
         if form.is_valid():
-            form.save()
+            venue = form.save(commit=False)
+            venue.owner = request.user.id  #logged in user-id         
+            venue.save() 
+            #form.save()
             submitted = True
     else:            
         form = VenueForm()
@@ -50,7 +57,8 @@ def all_venues(request):
 
 def show_venue(request, pk):
     venue= Venue.objects.get(pk=pk)
-    return render(request, 'events/show_venue.html', {'venue':venue})
+    venue_owner = User.objects.get(pk=venue.owner)
+    return render(request, 'events/show_venue.html', {'venue':venue, 'venue_owner': venue_owner})
 
 def search_venues(request):
     if request.method == "POST":
@@ -73,33 +81,60 @@ def update_venue(request, pk):
 def add_event(request):
     submitted = False
     if request.method == "POST":
-        form = EventForm(request.POST)
-        if form.is_valid():
-            form.save()
-            submitted = True
-    else:            
-        form = EventForm()
+        if request.user.is_superuser:
+            form = EventFormAdmin(request.POST)
+            if form.is_valid():
+                form.save()
+                submitted = True
+        else:
+            form = EventForm(request.POST)
+            if form.is_valid():
+                event = form.save(commit=False)
+                event.manager = request.user  #logged in user         
+                event.save() 
+                submitted = True        
+    else:
+        if request.user.is_superuser:            
+            form = EventFormAdmin()
+        else:
+            form = EventForm()
 
     return render(request, 'events/add_event.html', {'form' : form, 'submitted':submitted})
 
 def update_event(request, pk):
     event=get_object_or_404(Event, pk=pk)
-    form = EventForm(request.POST or None, instance = event)   
-    if request.method == "POST":          
+    if request.user.is_superuser:
+        form = EventFormAdmin(request.POST or None, instance = event)
+        
+    else:
+        form = EventForm(request.POST or None, instance = event)
+        
+    if request.method == "POST":        
         if form.is_valid():
             form.save()
             return redirect('list-events')
-    return render(request, 'events/update_event.html', {'form':form})
+            
+    return render(request, 'events/update_event.html', {'event': event, 'form':form})
 
-def delete_event(request, pk):
+def delete_event(request, pk):    
     event=get_object_or_404(Event, pk=pk)
-    event.delete()
+    if request.user == event.manager:
+        event.delete()
+        messages.success(request, "Event deleted successfully!!!")        
+    else:
+        messages.success(request, "You are not authorized")
+        
     return redirect('list-events')
+    
+       
 
 def delete_venue(request, pk):
-    venue=get_object_or_404(Venue, pk=pk)
-    venue.delete()
-    return redirect('list-venues')
+    if request.user.is_authenticated:    
+        venue=get_object_or_404(Venue, pk=pk)
+        venue.delete()
+        return redirect('list-venues')
+    else:
+        return redirect('login')
 
 #Generate Text file of Venues
 def venue_text(request):

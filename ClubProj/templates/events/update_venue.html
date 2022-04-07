@@ -1,7 +1,7 @@
 {% extends 'events/base.html' %}
 
 {% block content %}
-
+{% if user.is_authenticated %}
     <div class="panel-group">
     <div class="panel panel-primary">
     <div class="panel-heading d-flex justify-content-center">Update Venue</div>
@@ -52,6 +52,9 @@
 	 </div>
 	 </div>
 	 </div>
- 
+ {% else %}
+ <h2>You must be login to access this page</h2> 
+ <a class="nav-link" href="{% url 'login' %}">Login here</a>
+ {% endif %}
 
 {% endblock %}

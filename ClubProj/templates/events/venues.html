@@ -16,8 +16,12 @@
   {% for venue in venues_pg %}
     <tr>
       <td><a href="{% url 'venue-detail' venue.id %}">{{venue}}</a></td>
-      <td class="text-end"><a href="{% url 'venue-update' venue.id %}" class="btn btn-secondary">Update</a></td>
+      {% if user.is_authenticated %}
+      <td class="text-end">       
+      <a href="{% url 'venue-update' venue.id %}" class="btn btn-secondary">Update</a>      
+      </td>      
       <td class="text-end"><a href="{% url 'venue-delete' venue.id %}" class="btn btn-danger">Delete</a></td>
+      {% endif %}      
     </tr>
    {% endfor %}  
    </tbody>

@@ -1,0 +1,26 @@
+{% extends 'events/base.html' %}
+
+{% block content %}
+
+	{% if form.errors %}	
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		  <strong>There was error in the form</strong> 
+		  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+	{% endif %}
+<div class="shadow p-3 mb-5 bg-body rounded">
+    <h2 class="text-left"> Register </h2>
+    <br/>
+    
+        <form action="" method="POST" autocomplete="off" enctype="multipart/form-data">
+            {% csrf_token %}
+             {{form.as_p}}
+             <br/>
+             <br/> 
+	  		<button type="submit" class="btn btn-secondary">Submit</button>
+            <br/> 
+                       
+            <hr/>
+        </form> 
+</div>
+{% endblock %}
