@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse-pydev version="1.0"?><pydev_project>
+    <pydev_variables_property name="org.python.pydev.PROJECT_VARIABLE_SUBSTITUTION">
+        <key>env_var:CommonProgramFiles</key>
+        <value>C:\Program Files\Common Files</value>
+        <key>env_var:COMPUTERNAME</key>
+        <value>DESKTOP-JVCH3M2</value>
+        <key>DJANGO_MANAGE_LOCATION</key>
+        <value>manage.py</value>
+        <key>PY</key>
+        <value>310</value>
+        <key>env_var:PROCESSOR_REVISION</key>
+        <value>9e0a</value>
+        <key>env_var:Path</key>
+        <value>C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\;C:\Program Files (x86)\Microsoft SQL Server\120\DTS\Binn\;C:\Program Files\Java\jdk1.8.0_261\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files (x86)\IBM\AppScanSource\bin;C:\Users\DELL\AppData\Local\Programs\Python\Python310\Scripts\;C:\Users\DELL\AppData\Local\Programs\Python\Python310\;C:\Users\DELL\AppData\Local\Microsoft\WindowsApps;C:\Users\DELL\AppData\Roaming\npm;C:\Users\DELL\AppData\Local\Programs\Microsoft VS Code\bin;C:\PHP;</value>
+        <key>env_var:OneDrive</key>
+        <value>C:\Users\DELL\OneDrive</value>
+        <key>env_var:ProgramFiles</key>
+        <value>C:\Program Files</value>
+        <key>env_var:USERDOMAIN_ROAMINGPROFILE</key>
+        <value>DESKTOP-JVCH3M2</value>
+        <key>env_var:ZES_ENABLE_SYSMAN</key>
+        <value>1</value>
+        <key>env_var:SystemDrive</key>
+        <value>C:</value>
+        <key>env_var:JAVA_HOME</key>
+        <value>C:\Program Files\Java\jdk1.8.0_261\</value>
+        <key>env_var:PROCESSOR_ARCHITECTURE</key>
+        <value>AMD64</value>
+        <key>env_var:PROCESSOR_IDENTIFIER</key>
+        <value>Intel64 Family 6 Model 158 Stepping 10, GenuineIntel</value>
+        <key>env_var:TEMP</key>
+        <value>C:\Users\DELL\AppData\Local\Temp</value>
+        <key>env_var:PSModulePath</key>
+        <value>C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\PowerShell\Modules\</value>
+        <key>env_var:CommonProgramFiles(x86)</key>
+        <value>C:\Program Files (x86)\Common Files</value>
+        <key>env_var:USERDOMAIN</key>
+        <value>DESKTOP-JVCH3M2</value>
+        <key>env_var:PATHEXT</key>
+        <value>.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC</value>
+        <key>env_var:ProgramW6432</key>
+        <value>C:\Program Files</value>
+        <key>env_var:PROCESSOR_LEVEL</key>
+        <value>6</value>
+        <key>env_var:NUMBER_OF_PROCESSORS</key>
+        <value>6</value>
+        <key>env_var:DriverData</key>
+        <value>C:\Windows\System32\Drivers\DriverData</value>
+        <key>env_var:USERNAME</key>
+        <value>DELL</value>
+        <key>env_var:windir</key>
+        <value>C:\WINDOWS</value>
+        <key>env_var:ProgramFiles(x86)</key>
+        <value>C:\Program Files (x86)</value>
+        <key>env_var:LOCALAPPDATA</key>
+        <value>C:\Users\DELL\AppData\Local</value>
+        <key>env_var:OS</key>
+        <value>Windows_NT</value>
+        <key>env_var:ComSpec</key>
+        <value>C:\WINDOWS\system32\cmd.exe</value>
+        <key>env_var:APPDATA</key>
+        <value>C:\Users\DELL\AppData\Roaming</value>
+        <key>env_var:HOMEPATH</key>
+        <value>\Users\DELL</value>
+        <key>env_var:OneDriveConsumer</key>
+        <value>C:\Users\DELL\OneDrive</value>
+        <key>env_var:ProgramData</key>
+        <value>C:\ProgramData</value>
+        <key>DJANGO_SETTINGS_MODULE</key>
+        <value>ClubProj.settings</value>
+        <key>env_var:=::</key>
+        <value>::\</value>
+        <key>env_var:SystemRoot</key>
+        <value>C:\WINDOWS</value>
+        <key>env_var:HOMEDRIVE</key>
+        <value>C:</value>
+        <key>env_var:PUBLIC</key>
+        <value>C:\Users\Public</value>
+        <key>env_var:CommonProgramW6432</key>
+        <value>C:\Program Files\Common Files</value>
+        <key>env_var:TMP</key>
+        <value>C:\Users\DELL\AppData\Local\Temp</value>
+        <key>env_var:LOGONSERVER</key>
+        <value>\\DESKTOP-JVCH3M2</value>
+        <key>env_var:USERPROFILE</key>
+        <value>C:\Users\DELL</value>
+        <key>env_var:ALLUSERSPROFILE</key>
+        <value>C:\ProgramData</value>
+        <key>env_var:SESSIONNAME</key>
+        <value>Console</value>
+    </pydev_variables_property>
+    <pydev_pathproperty name="org.python.pydev.PROJECT_SOURCE_PATH">
+        <path>/${PROJECT_DIR_NAME}</path>
+    </pydev_pathproperty>
+    <pydev_property name="org.python.pydev.PYTHON_PROJECT_VERSION">python interpreter</pydev_property>
+    <pydev_property name="org.python.pydev.PYTHON_PROJECT_INTERPRETER">python3.10</pydev_property>
+</pydev_project>
