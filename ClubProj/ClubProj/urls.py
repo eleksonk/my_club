@@ -26,5 +26,5 @@ urlpatterns = [
 
 #configure admin titles
 admin.site.site_header = "My Club Administration Page"
-admin.site.site_title = "Club Title"
+admin.site.site_title = "Club Title" 
 admin.site.index_title = "Welcome to the Admin Area"
