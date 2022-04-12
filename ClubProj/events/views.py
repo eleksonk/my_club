@@ -19,21 +19,34 @@ from django.core.paginator import Paginator
 from django.contrib import messages
 from django.contrib.auth.models import User
 
-
-
+from django.db.models import Q
+import calendar
+from datetime import datetime
 
 # Create your views here.
 def home(request):
-    return render(request, 'events/home.html', {})
+    year = datetime.now().year
+    month=datetime.now().strftime('%B')
+    month = month.capitalize()
+    
+    # Convert month from name to number
+    month_number = list(calendar.month_name).index(month)
+    month_number = int(month_number)
+    
+    event_list = Event.objects.filter(
+        event_date__year = year,
+        event_date__month = month_number
+        ) 
+    return render(request, 'events/home.html', {"event_list": event_list})
 
 def all_events(request):
-    events = Event.objects.all().order_by("event_date")
+    events = Event.objects.all().order_by("-event_date")
     return render(request, 'events/events_list.html', {'events':events})
 
 def add_venue(request):
     submitted = False
     if request.method == "POST":
-        form = VenueForm(request.POST)
+        form = VenueForm(request.POST, request.FILES)
         if form.is_valid():
             venue = form.save(commit=False)
             venue.owner = request.user.id  #logged in user-id         
@@ -71,7 +84,7 @@ def search_venues(request):
     
 def update_venue(request, pk):
     venue=get_object_or_404(Venue, pk=pk)
-    form = VenueForm(request.POST or None, instance = venue)   
+    form = VenueForm(request.POST or None, request.FILES or None, instance = venue)   
     if request.method == "POST":          
         if form.is_valid():
             form.save()
@@ -203,4 +216,48 @@ def venue_pdf(request):
     buff.seek(0)
     
     return FileResponse(buff, as_attachment=True, filename='venues.pdf')
+
+def my_events(request):
+    if request.user.is_authenticated:
+        me = request.user.id
+        events = Event.objects.filter(attendees=me)
+        return render(request, "events/my_events.html", {"events": events})
+    else:
+        messages.success(request, "You are not authorized")
+        return redirect('home')
+    
+def search_events(request):
+    if request.method == "POST":
+        searched=request.POST["searched"]
+        
+        #multiple column search
+        lookup = Q(name__icontains = searched) | Q(description__icontains = searched)
+        #icontains case insensitive
+        events =Event.objects.filter(lookup)
+        return render(request, 'events/search_events.html', {'searched':searched, 'events': events})
+    else:
+        return render(request, 'events/search_events.html')
+    
+def admin_approval(request):
+    events = Event.objects.all().order_by("-event_date")
+    if request.user.is_superuser:
+        if request.method=="POST":            
+            id_list = request.POST.getlist("boxes")
+            
+            #uncheck all events 
+            events.update(approved=False)
+            
+            #update the database
+            for id in id_list:
+                Event.objects.filter(pk=int(id)).update(approved=True)
+            
+            messages.success(request, "Events Approved !!!")
+            return redirect("list-events")            
+    else:
+        messages.success(request, "You are not authorized to access this page")
+        return redirect('home')
+    
+    return render(request, 'events/admin_approval.html', {"events": events})
+        
+    
 

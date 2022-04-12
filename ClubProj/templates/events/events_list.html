@@ -5,6 +5,7 @@
 <h2>Events</h2>
 
 {% for event in events %}
+{% if event.approved %}
 <div class="card">
   <div class="card-header">
   {{ event.name }}
@@ -13,9 +14,11 @@
     <h5 class="card-title">Venue : {{ event.venue }}</h5>
     <p class="card-text">
        <li>Date : {{ event.event_date }}</li>
+       <li>Days till event : {{ event.Days_left }}</li>
         <li>Address : {{ event.venue.address }}</li>
         <li>Manager : {{ event.manager }}</li>
-        <li>Description : {{ event.description }}</li>  
+        <li>Description : {{ event.description }}</li>
+        <li>Approved : {{ event.approved }}</li>    
         <li>Attendees : 
         {% for attendee in event.attendees.all  %}      
             <ul>{{ attendee }}</ul>
@@ -33,7 +36,8 @@
     {% endif %}
   </div>
 </div>
- <br/><br/>
+ <br/><br/> 
+{% endif %}
 {% endfor %}
 
 

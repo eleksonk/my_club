@@ -9,7 +9,7 @@ class DateTimePicker(forms.DateTimeInput):
 class VenueForm(forms.ModelForm):
     class Meta:
         model = Venue
-        fields = ("name", "address", "pin_code", "phone_no", "email_address")
+        fields = ("name", "address", "pin_code", "phone_no", "email_address", "venue_image",)
 
         labels = {
             'name': '',
@@ -17,6 +17,7 @@ class VenueForm(forms.ModelForm):
             'pin_code': '',
             'phone_no': '',
             'email_address': '',
+            'venue_image': '',
         }
         widgets = {
             'name': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Venue Name'}),

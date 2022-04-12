@@ -1,0 +1,39 @@
+{% extends 'events/base.html' %}
+
+{% block content %}
+
+<h2>Admin Events Approval Page</h2>
+<br/><br/>
+<form action="" method="POST">
+{% csrf_token %}
+<table class="table table-striped table-hover table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Event Name</th>
+      <th scope="col">Approved</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for event in events %}
+    <tr>
+      <td>{{ event }}</td>
+      <td>
+      
+      <div class="form-check">
+      {% if event.approved %}
+      <input class="form-check-input" type="checkbox" checked="checked" value="{{event.id}}" name="boxes"/>
+      {% else %}
+      <input class="form-check-input" type="checkbox" value="{{event.id}}" name="boxes"/>
+      {% endif %}
+      </div>
+      
+      </td>
+    </tr>
+  {% endfor %}   
+  </tbody>
+</table>
+
+<br/>
+<button class="btn btn-secondary" type="submit">Update Approval</button>
+</form>
+{% endblock %}

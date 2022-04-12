@@ -4,15 +4,37 @@
 {% if searched %}
 <p>You searched for </p>
 <br/>
-<table class="table table-striped table-hover table-bordered">  
-<tbody>
+
 {% for venue in venues %}
-<tr>
-      <td><a href="{% url 'venue-detail' venue.id %}">{{venue}}</a></td>
-</tr>
+<div class="card">
+  <div class="card-header">
+  Venue
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{ venue.name }}</h5>
+    <p class="card-text">
+	    {% if venue.address %}
+       <li>Address : {{ venue.address }}</li>
+    	{% endif %}
+    	{% if venue.pin_code %}   
+        <li>Pincode : {{ venue.pin_code }}</li>
+    	{% endif %}        
+        {% if venue.phone_no %}
+        <li>Phone No : {{ venue.phone_no }}</li>
+    	{% endif %}        
+        {% if venue.email_address %}
+        <li>Email address : {{ venue.email_address }}</li>
+    	{% endif %}        
+        {% if venue.owner %}  
+        <li>Owner ID : {{ venue.owner }}</li> 
+    	{% endif %}
+    </ul>
+    </p>
+  </div>
+</div>
+<br/>
 {% endfor %}
-</tbody>
-</table>
+
 {% else %}
 <p>You forgot to enter the keyword</p>
 {% endif %}
