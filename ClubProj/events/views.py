@@ -239,6 +239,13 @@ def search_events(request):
         return render(request, 'events/search_events.html')
     
 def admin_approval(request):
+    #get venue lists
+    venue_list = Venue.objects.all()
+    
+    #Get counts
+    event_count = Event.objects.filter(approved=True).count()
+    venue_count = Venue.objects.all().count()
+    user_count = User.objects.all().count()
     events = Event.objects.all().order_by("-event_date")
     if request.user.is_superuser:
         if request.method=="POST":            
@@ -257,7 +264,30 @@ def admin_approval(request):
         messages.success(request, "You are not authorized to access this page")
         return redirect('home')
     
-    return render(request, 'events/admin_approval.html', {"events": events})
+    return render(request, 'events/admin_approval.html', {"events": events, 
+                                                          "event_count":event_count, 
+                                                          "venue_count": venue_count,
+                                                          "user_count": user_count,
+                                                          "venue_list": venue_list})
+
+def venue_events(request, venue_id):
+    #get the venue
+    venue = Venue.objects.get(pk=venue_id)
+    
+    #get all events associated with this venue
+    events = Event.objects.filter(venue=venue)
+    #events = venue.event_set.all()
+    
+    if events:
+        return render(request, 'events/venue_events.html', {"events": events})
+    else:
+        messages.success(request, "There are no events at this venue for this time")
+        return redirect('admin-approval')
+    
+def show_event(request, event_id):
+    event = Event.objects.get(pk=event_id)    
+    return render(request, 'events/show_event.html', {"event": event})
+
         
     
 
